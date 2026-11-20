@@ -1,0 +1,15 @@
+.svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.day {
+  opacity: var(--day-op);
+  transition: opacity 0.8s ease;
+}
+
+.night {
+  opacity: var(--night-op);
+  transition: opacity 0.8s ease;
+}

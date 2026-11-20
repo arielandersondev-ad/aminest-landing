@@ -1,0 +1,103 @@
+/*
+ * Tokens de diseño de AmiNest.
+ * Paleta del palomo Borino (vino, castaño, arena, crema, tinta) y, en tema claro,
+ * la paloma en tonos del Buchón balear (pizarra, malva, plata).
+ *
+ * El tema sigue al sistema; [data-theme] lo fija desde el selector del navbar.
+ * light-dark() elige el valor según color-scheme, así cada token se declara una sola vez.
+ */
+:root {
+  color-scheme: light dark;
+
+  /* Marca */
+  --vino: #6e1e2a;
+  --castano: #a35a3a;
+  --arena: #d9be98;
+  --crema: #f6eee3;
+  --tinta: #2a201f;
+
+  /* Superficies y texto */
+  --bg: light-dark(#fbf7f2, #1a1413);
+  --bg2: light-dark(#f3e9dd, #221a19);
+  --fg: light-dark(#2a201f, #f3e9df);
+  --muted: light-dark(#6b5b56, #bca9a0);
+  --line: light-dark(#e6d9cb, #3a2d2a);
+  --card: light-dark(#ffffff, #261e1c);
+  --accent: light-dark(#6e1e2a, #e3b48f);
+  --accent-fg: light-dark(#f6eee3, #2a1714);
+  --soft: light-dark(rgb(110 30 42 / 0.08), rgb(227 180 143 / 0.1));
+  --ok: light-dark(#2f6b4f, #7fc3a0);
+
+  /* Banda vino (Próximamente) */
+  --band: light-dark(#6e1e2a, #3a1419);
+  --band-fg: #f6eee3;
+  --band-muted: light-dark(#e5cdb8, #d9be98);
+
+  /* Logo e ilustraciones */
+  --lg1: light-dark(#6e1e2a, #f1dcc6);
+  --lg2: light-dark(#a35a3a, #c98a62);
+  --lg3: #d9be98;
+  --lg4: light-dark(#2a201f, #f6eee3);
+
+  /* Paloma */
+  --bd1: light-dark(#35343b, #f1dcc6);
+  --bd2: light-dark(#8e7477, #c98a62);
+  --bd3: light-dark(#adaab2, #d9be98);
+  --bd4: light-dark(#1f1e22, #f6eee3);
+  --bdon: light-dark(#f6eee3, #3a1419);
+  --bdline: light-dark(#1f1e22, #2a1714);
+
+  /* Navbar de vidrio */
+  --navbg: light-dark(rgb(104 106 118 / 0.18), rgb(52 52 62 / 0.5));
+  --navbg-band: light-dark(rgb(246 238 227 / 0.84), rgb(52 52 62 / 0.5));
+  --navline: light-dark(rgb(255 255 255 / 0.5), rgb(255 255 255 / 0.1));
+  --navline-band: light-dark(rgb(255 255 255 / 0.75), rgb(255 255 255 / 0.1));
+  --navshadow: light-dark(rgb(30 30 40 / 0.14), rgb(0 0 0 / 0.35));
+
+  /* Portada: Illimani de día, ciudad de noche */
+  --sky1: light-dark(#a9bfd6, #141624);
+  --sky2: light-dark(#efe2d2, #3a2230);
+  --rock: light-dark(#6f7486, #3a3c4c);
+  --rock2: light-dark(#535869, #2a2b38);
+  --snow: light-dark(#ffffff, #e9e8f0);
+  --snow2: light-dark(#d9e1ec, #b4b6c8);
+  --far: light-dark(#9aa6b8, #2e3142);
+  --hill: light-dark(#b98a68, #3a2722);
+  --hill2: light-dark(#8e5e44, #2a1c19);
+  --day-op: 1;
+  --night-op: 0;
+
+  /* Tipografía (las variables --font-* las define next/font en el layout) */
+  --f-display: var(--font-sora), system-ui, sans-serif;
+  --f-body: var(--font-manrope), system-ui, sans-serif;
+  --f-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* Capas */
+  --z-pager: 25;
+  --z-hint: 26;
+  --z-nav: 20;
+  --z-menu: 30;
+  --z-cover: 59;
+  --z-actor: 60;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* Las opacidades no son colores, así que light-dark() no sirve: se cambian aparte. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --day-op: 0;
+    --night-op: 1;
+  }
+}
+
+:root[data-theme="dark"] {
+  --day-op: 0;
+  --night-op: 1;
+}

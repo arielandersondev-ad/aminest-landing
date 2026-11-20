@@ -1,0 +1,48 @@
+.viewport {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+}
+
+/* :where() deja la especificidad en cero para que cada panel pueda sobrescribirlo (la portada no hace scroll) */
+:where(.track > *) {
+  flex: 0 0 100vw;
+  width: 100vw;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.track > section {
+  display: grid;
+  align-content: safe center;
+  padding-block: 120px 110px;
+}
+
+.track > section[data-align="start"] {
+  align-content: start;
+}
+
+/* Velo que oscurece la pantalla mientras la paloma la tapa */
+.cover {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-cover);
+  background: var(--bd1);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .track > section {
+    padding-block: 100px;
+  }
+}

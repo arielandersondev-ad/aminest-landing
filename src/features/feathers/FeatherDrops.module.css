@@ -1,0 +1,14 @@
+.feather {
+  position: fixed;
+  top: -60px;
+  z-index: var(--z-pager);
+  width: 15px;
+  height: 45px;
+  pointer-events: none;
+}
+
+.feather svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,12 @@
+.word {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.015em;
+  line-height: 1;
+}
+
+.ami {
+  font-weight: 600;
+  color: var(--lg1);
+}

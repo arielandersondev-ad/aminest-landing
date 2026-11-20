@@ -1,0 +1,44 @@
+.actor {
+  position: fixed;
+  left: max(18px, env(safe-area-inset-left, 0px));
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  z-index: var(--z-actor);
+  width: 90px;
+  height: 90px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.actor[data-visible="true"] {
+  opacity: 1;
+}
+
+.actor svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Los orígenes de giro están en coordenadas del lienzo de 120×120 */
+.body {
+  transform-box: view-box;
+  transform-origin: 60px 96px;
+}
+
+.wing {
+  transform-box: view-box;
+  transform-origin: 70px 54px;
+  transform: rotate(-72deg) scale(0.82);
+}
+
+.legs {
+  transform-box: view-box;
+}
+
+@media (max-width: 640px) {
+  .actor {
+    width: 64px;
+    height: 64px;
+  }
+}

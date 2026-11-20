@@ -1,0 +1,233 @@
+/* Contenedor flotante: no captura clics salvo en sus piezas */
+.nav {
+  position: fixed;
+  top: calc(12px + env(safe-area-inset-top, 0px));
+  left: max(12px, env(safe-area-inset-left, 0px));
+  right: max(12px, env(safe-area-inset-right, 0px));
+  z-index: var(--z-nav);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: 16px;
+  pointer-events: none;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+/* Oculto mientras se reproduce la escena de portada */
+.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.hidden * {
+  pointer-events: none !important;
+}
+
+/* Sobre la banda vino el vidrio se vuelve crema casi opaco y la A gana un contorno */
+.nav[data-tone="band"] :global(.glass) {
+  background: var(--navbg-band);
+  border-color: var(--navline-band);
+}
+
+/* Píldoras laterales (menú y tema) */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 50px;
+  border-radius: 999px;
+  color: var(--fg);
+  font: inherit;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.25s ease;
+}
+
+.pill:hover {
+  transform: translateY(-1px);
+}
+
+.menuButton {
+  width: 72px;
+}
+
+.menuButton svg {
+  width: 24px;
+  height: 24px;
+}
+
+.menuIcon {
+  display: none;
+}
+
+.menuIcon line {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.menuButton[aria-expanded="true"] .lineTop {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.menuButton[aria-expanded="true"] .lineBottom {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+/* Barra partida con la A al centro */
+.bar {
+  justify-self: center;
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  align-items: start;
+  width: min(1100px, 100%);
+}
+
+.half {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  height: 50px;
+  pointer-events: auto;
+}
+
+/* Los cortes diagonales siguen las patas de la A */
+.halfLeft {
+  margin-right: -24px;
+  padding-left: 12px;
+  padding-right: 34px;
+  border-radius: 999px 0 0 999px;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
+}
+
+.halfRight {
+  justify-content: flex-end;
+  margin-left: -24px;
+  padding-left: 34px;
+  padding-right: 5px;
+  border-radius: 0 999px 999px 0;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 30px 100%);
+}
+
+/* Opciones: estilo del botón Cotiza; la sección visible queda marcada */
+.link {
+  padding: 9px 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    background 0.3s,
+    border-color 0.3s,
+    color 0.3s;
+}
+
+.link:hover {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.link[aria-current="location"] {
+  background: color-mix(in srgb, var(--accent) 72%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 80%, transparent);
+  color: var(--accent-fg);
+}
+
+.emblem {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 60px;
+  height: 50px;
+  filter: drop-shadow(0 6px 10px rgb(40 10 15 / 0.25));
+  pointer-events: auto;
+  transition:
+    transform 0.25s ease,
+    filter 0.45s ease;
+}
+
+.emblem:hover {
+  transform: translateY(-2px);
+}
+
+.emblem svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.nav[data-tone="band"] .emblem {
+  filter: drop-shadow(1.2px 0 0 #f6eee3) drop-shadow(-1.2px 0 0 #f6eee3) drop-shadow(0 1.2px 0 #f6eee3)
+    drop-shadow(0 -1.2px 0 #f6eee3) drop-shadow(0 0 10px rgb(246 238 227 / 0.45))
+    drop-shadow(0 6px 10px rgb(40 10 15 / 0.3));
+}
+
+@media (max-width: 1180px) {
+  .link {
+    padding: 8px 10px;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+  }
+}
+
+/* Pantallas angostas: las opciones pasan al menú y el botón izquierdo lo abre */
+@media (max-width: 960px) {
+  .link:not(.cta) {
+    display: none;
+  }
+
+  .pulseIcon {
+    display: none;
+  }
+
+  .menuIcon {
+    display: block;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav {
+    gap: 8px;
+  }
+
+  .pill,
+  .half {
+    height: 44px;
+  }
+
+  .menuButton {
+    width: 50px;
+  }
+
+  .bar {
+    grid-template-columns: 1fr 52px 1fr;
+  }
+
+  .link {
+    display: none;
+  }
+
+  .emblem {
+    width: 52px;
+    height: 44px;
+  }
+
+  .halfLeft {
+    margin-right: -21px;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 26px) 100%, 0 100%);
+  }
+
+  .halfRight {
+    margin-left: -21px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 26px 100%);
+  }
+}

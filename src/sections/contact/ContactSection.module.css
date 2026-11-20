@@ -1,0 +1,122 @@
+.layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.header {
+  margin-bottom: 0;
+}
+
+.footer {
+  grid-column: 1 / -1;
+}
+
+/* Formulario */
+.form {
+  display: grid;
+  gap: 16px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--card);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* 16 px como mínimo: con menos, iOS hace zoom al enfocar el campo */
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--fg);
+  font: inherit;
+  font-size: 16px;
+}
+
+.field textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.submit {
+  justify-self: start;
+}
+
+.note {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.status {
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--soft);
+  font-size: 14px;
+}
+
+/* Pie */
+.siteFooter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 48px;
+  padding-block: 28px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  text-decoration: none;
+  color: var(--fg);
+}
+
+.logoMark {
+  width: 38px;
+  height: 38px;
+}
+
+.egg {
+  width: min(420px, 70vw);
+  height: auto;
+  aspect-ratio: 1;
+  left: -8%;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.09;
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

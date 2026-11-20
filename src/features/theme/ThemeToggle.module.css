@@ -1,0 +1,23 @@
+.toggle {
+  padding: 0 18px 0 14px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 640px) {
+  .toggle {
+    width: 50px;
+    padding: 0;
+  }
+
+  .label {
+    display: none;
+  }
+}

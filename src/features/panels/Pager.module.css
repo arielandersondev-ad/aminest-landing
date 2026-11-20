@@ -1,0 +1,24 @@
+.pager {
+  position: fixed;
+  right: max(18px, env(safe-area-inset-right, 0px));
+  bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+  z-index: var(--z-pager);
+  display: flex;
+  gap: 6px;
+}
+
+.pager i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--line);
+  transition:
+    width 0.3s,
+    background 0.3s;
+}
+
+.pager i.active {
+  width: 22px;
+  border-radius: 99px;
+  background: var(--accent);
+}

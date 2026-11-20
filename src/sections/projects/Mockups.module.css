@@ -1,0 +1,291 @@
+/* Marco de ventana */
+.window {
+  min-width: 0;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 24px 50px -30px rgb(42 32 31 / 0.35);
+}
+
+.titleBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.titleBar i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--line);
+}
+
+.titleBar span {
+  margin-left: 6px;
+}
+
+.label {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+/* Agenda con chatbot */
+.split {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+}
+
+.agenda {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  padding: 14px;
+  border-right: 1px solid var(--line);
+}
+
+.days {
+  display: flex;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.days span {
+  flex: 1;
+  padding: 6px 0;
+  border-radius: 8px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.days .dayActive {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+.slot {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: var(--soft);
+  font-size: 13px;
+}
+
+.slot time {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+.slot b {
+  display: block;
+  font-weight: 700;
+}
+
+.slot small {
+  color: var(--muted);
+}
+
+.slotFree {
+  background: transparent;
+  border: 1px dashed var(--line);
+  color: var(--muted);
+}
+
+.chat {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-width: 0;
+  padding: 14px;
+  font-size: 13px;
+}
+
+.message {
+  max-width: 92%;
+  padding: 9px 12px;
+  border-radius: 14px;
+}
+
+.fromUser {
+  justify-self: end;
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-bottom-right-radius: 4px;
+}
+
+.fromBot {
+  background: var(--bg2);
+  border-bottom-left-radius: 4px;
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.suggestions span {
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Ficha dental */
+.dental {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+}
+
+.patient {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.patient b {
+  font-size: 15px;
+}
+
+.chart {
+  overflow-x: auto;
+}
+
+.chart table {
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 4px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart td {
+  width: 30px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 7px 7px 10px 10px;
+  background: var(--bg2);
+  color: var(--muted);
+  text-align: center;
+}
+
+.chart td.midline {
+  width: 8px;
+  background: none;
+  border: 0;
+}
+
+/* Estados de pieza: se usan en las celdas del odontograma y en la leyenda */
+.caries,
+.chart td.caries {
+  background: var(--vino);
+  border-color: var(--vino);
+  color: #f6eee3;
+}
+
+.restoration,
+.chart td.restoration {
+  background: var(--arena);
+  border-color: var(--arena);
+  color: #2a201f;
+}
+
+.endodontics,
+.chart td.endodontics {
+  background: var(--castano);
+  border-color: var(--castano);
+  color: #f6eee3;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.legend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  border-radius: 3px;
+  vertical-align: -1px;
+}
+
+.history {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.history div {
+  display: grid;
+  grid-template-columns: 78px 1fr auto;
+  gap: 8px;
+  padding: 7px 0;
+  border-top: 1px solid var(--line);
+}
+
+.history time {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+.history em {
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ok);
+}
+
+.history em.pending {
+  color: var(--accent);
+}
+
+@media (max-width: 520px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .agenda {
+    border-right: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .chart table {
+    border-spacing: 2px;
+    font-size: 10px;
+  }
+
+  .chart td {
+    width: 22px;
+    height: 30px;
+  }
+
+  .chart td.midline {
+    width: 4px;
+  }
+}

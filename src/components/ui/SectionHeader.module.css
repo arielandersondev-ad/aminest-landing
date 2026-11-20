@@ -1,0 +1,25 @@
+.header {
+  display: grid;
+  gap: 12px;
+  max-width: 640px;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.1;
+}
+
+/* Hereda el color en secciones con fondo propio (la banda vino lo redefine) */
+.description {
+  color: var(--section-muted, var(--muted));
+  font-size: 17px;
+}
+
+.eyebrow {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--section-muted, var(--muted));
+}
