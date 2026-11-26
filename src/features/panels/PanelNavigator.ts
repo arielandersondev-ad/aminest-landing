@@ -7,6 +7,8 @@ export interface PanelNavigatorOptions {
   panels: HTMLElement[];
   pigeon: PigeonChoreographer;
   reducedMotion: boolean;
+  /** Panel con el que arranca la página (p. ej. al abrir la URL con "#proyectos"). */
+  initialIndex?: number;
   onActiveChange(index: number): void;
 }
 
@@ -27,7 +29,10 @@ export class PanelNavigator {
   private readonly timers = new TimerBag();
 
   constructor(private readonly options: PanelNavigatorOptions) {
-    this.place(0, null);
+    const start = options.initialIndex ?? 0;
+    this.place(start >= 0 && start < this.panelCount ? start : 0, null);
+    // Fuera de la portada la paloma ya está posada en el panel.
+    if (this.index > 0) options.pigeon.perchWithoutMotion();
   }
 
   get activeIndex(): number {

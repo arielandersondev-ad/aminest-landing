@@ -17,6 +17,7 @@ export const ABOUT = {
 } as const;
 
 export const CONTACT = {
+  whatsapp: "59170173088",
   interests: [
     "Página web o landing",
     "Sistema web (agenda, CRM, panel)",

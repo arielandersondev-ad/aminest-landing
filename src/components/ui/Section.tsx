@@ -26,7 +26,11 @@ export function Section({
 }: SectionProps) {
   return (
     <section id={id} className={cx(styles.section, className)} data-align={align}>
-      {decoration}
+      {decoration && (
+        <div className={styles.decorations} aria-hidden="true">
+          {decoration}
+        </div>
+      )}
       <Container className={containerClassName}>{children}</Container>
     </section>
   );

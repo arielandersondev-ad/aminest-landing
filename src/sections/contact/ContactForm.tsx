@@ -9,13 +9,11 @@ type FormStatus = "idle" | "incomplete" | "ready";
 
 const STATUS_MESSAGE: Record<Exclude<FormStatus, "idle">, string> = {
   incomplete: "Completa tu nombre y un correo o WhatsApp para poder responderte.",
-  ready:
-    "Formulario completo. Todavía no se envía: falta conectarlo a tu correo o WhatsApp.",
+  ready: "WhatsApp se abrió con el mensaje preparado. Revísalo y presiona Enviar allí.",
 };
 
 /**
- * Formulario de contacto. Por ahora solo valida en el navegador;
- * el envío real (correo, WhatsApp o un endpoint propio) se conecta en handleSubmit.
+ * Formulario de contacto que prepara un mensaje y lo abre en WhatsApp.
  */
 export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -25,7 +23,23 @@ export function ContactForm() {
     const data = new FormData(event.currentTarget);
     const name = String(data.get("nombre") ?? "").trim();
     const contact = String(data.get("correo") ?? "").trim();
-    setStatus(name && contact ? "ready" : "incomplete");
+    if (!name || !contact) {
+      setStatus("incomplete");
+      return;
+    }
+
+    const interest = String(data.get("tipo") ?? "").trim();
+    const message = String(data.get("mensaje") ?? "").trim();
+    const whatsappMessage = [
+      `Hola, soy ${name}.`,
+      `Mi contacto es: ${contact}.`,
+      `Me interesa: ${interest}.`,
+      `Mi idea: ${message || "Aún no tengo detalles."}`,
+    ].join("\n");
+    const whatsappUrl = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`;
+
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    setStatus("ready");
   }
 
   return (
@@ -56,7 +70,7 @@ export function ContactForm() {
         Enviar mensaje
       </Button>
       <p className={styles.note}>
-        Vista previa: este formulario todavía no envía mensajes. Hay que conectarlo a tu correo o WhatsApp.
+        Al enviar, se abrirá WhatsApp con el mensaje listo. Reemplaza el número de ejemplo en CONTACT.whatsapp por el tuyo, con código de país y sin + ni espacios.
       </p>
       {status !== "idle" && (
         <p className={styles.status} role="status">

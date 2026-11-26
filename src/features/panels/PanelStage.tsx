@@ -4,6 +4,7 @@ import { useEffect, useRef, type ReactNode } from "react";
 import { PigeonActor } from "@/features/pigeon/PigeonActor";
 import { PigeonChoreographer, type PigeonElements } from "@/features/pigeon/PigeonChoreographer";
 import { prefersReducedMotion } from "@/lib/media";
+import { sectionIndexOf } from "@/content/sections";
 import { activePanelStore } from "./navigationStore";
 import { bindPanelInput } from "./panelInput";
 import { PanelNavigator } from "./PanelNavigator";
@@ -31,6 +32,7 @@ export function PanelStage({ children }: { children: ReactNode }) {
       panels,
       pigeon,
       reducedMotion: prefersReducedMotion(),
+      initialIndex: sectionIndexOf(decodeURIComponent(window.location.hash.slice(1))),
       onActiveChange: activePanelStore.set,
     });
     const unbindInput = bindPanelInput(navigator, panels);

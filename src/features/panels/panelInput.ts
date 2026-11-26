@@ -95,6 +95,28 @@ export function bindPanelInput(navigator: PanelNavigator, panels: HTMLElement[])
     listen,
   );
 
+  /* El navegador desplaza por su cuenta el visor hasta el ancla de la URL ("#proyectos").
+     Ese scroll nativo se suma al translateX de la pista y deja a la vista otra sección:
+     el visor nunca debe desplazarse, la posición la decide solo el navegador de paneles. */
+  const viewport = navigator.activePanel.parentElement?.parentElement;
+  if (viewport) {
+    const resetViewport = () => {
+      if (viewport.scrollLeft || viewport.scrollTop) viewport.scrollTo(0, 0);
+    };
+    resetViewport();
+    viewport.addEventListener("scroll", resetViewport, passive);
+  }
+
+  /* Cambios del ancla en la URL (atrás/adelante o editarla a mano) */
+  window.addEventListener(
+    "hashchange",
+    () => {
+      const index = sectionIndexOf(decodeURIComponent(window.location.hash.slice(1)));
+      if (index >= 0) navigator.goTo(index);
+    },
+    listen,
+  );
+
   /* Enlaces internos (#seccion): navegan con la animación en lugar de saltar */
   document.addEventListener(
     "click",

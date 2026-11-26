@@ -1,6 +1,17 @@
+/* Sin `overflow` aquí: el panel (PanelStage) ya recorta en horizontal y hace scroll en vertical.
+   Un `overflow: hidden` en esta clase le gana a esa regla y deja el contenido largo cortado. */
 .section {
   position: relative;
+}
+
+/* Capa de las ilustraciones: ocupa la pantalla visible del panel y recorta lo que sobresale,
+   así una ilustración que se sale por abajo no alarga el scroll del panel */
+.decorations {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   overflow: hidden;
+  pointer-events: none;
 }
 
 /* Ilustración de fondo: no captura clics y queda detrás del contenido */
